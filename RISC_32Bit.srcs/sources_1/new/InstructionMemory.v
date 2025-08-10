@@ -21,16 +21,23 @@
 
 
 module InstructionMemory(
-    input [15:0] addr,
-    output reg [15:0] instr
+    input clk,
+    input reset,
+    input [31:0] read_addr,
+    output reg [31:0] instr_out
 );
-    reg [15:0] mem [0:255]; // 256 x 16-bit
-
+    reg [32:0] mem [63:0]; // 64 x 32-bit
+    integer k;
     initial begin
         $readmemb("program.mem", mem); // Load program from file
     end
 
-    always @(*) begin
-        instr = mem[addr >> 1]; // word aligned
+    always @(posedge clk or posedge reset) begin
+        if(reset)
+        begin
+            for(k=0;k<64;k=k+1) mem[k]<=32'h0000_0000;
+        end
+        else
+            instr_out = mem[read_addr];
     end
 endmodule
