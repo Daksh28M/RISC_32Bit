@@ -5,7 +5,7 @@
 // 
 // Create Date: 10.08.2025 18:03:35
 // Design Name: 
-// Module Name: InstructionMemory
+// Module Name: Register_file
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

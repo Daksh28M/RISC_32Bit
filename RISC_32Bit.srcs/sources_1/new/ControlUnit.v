@@ -28,7 +28,7 @@ module ControlUnit(
     output reg MemWrite,
     output reg ALUSrc,
     output reg RegWrite,
-    output reg [2:0] ALUOp
+    output reg [1:0] ALUOp
     );
 
 always @(*)
