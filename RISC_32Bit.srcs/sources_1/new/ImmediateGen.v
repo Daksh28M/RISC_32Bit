@@ -29,9 +29,9 @@ module ImmediateGen(
 always @(*)
 begin
     case(opcode)
-    7'b0000_011 : imm_ext = {{20{instruction[31]}}, instruction[31:20]};   //makes 20 copies of MSB of instruction concatenated with 11 MSB instruction bits
-    7'b0100_011 : imm_ext = {{20{instruction[31]}}, instruction[31:25], instruction[11:7]};
-    7'b1100_011 : imm_ext = {{19{instruction[31]}},instruction[31],instruction[30:25],instruction[11:8],1'b0};
+    7'b0000_011 : imm_ext <= {{20{instruction[31]}}, instruction[31:20]};   //makes 20 copies of MSB of instruction concatenated with 11 MSB instruction bits
+    7'b0100_011 : imm_ext <= {{20{instruction[31]}}, instruction[31:25], instruction[11:7]};
+    7'b1100_011 : imm_ext <= {{19{instruction[31]}},instruction[31],instruction[7],instruction[30:25],instruction[11:8],1'b0};
     endcase
 end
 endmodule
