@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10.08.2025 17:33:02
+// Create Date: 12.08.2025 02:10:57
 // Design Name: 
-// Module Name: ProgramCounter
+// Module Name: tb_top
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,18 +18,21 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`include "RISC_top.v"
 
+module tb_top;
 
-module ProgramCounter(
-    input clk, reset,
-    input [31:0] pc_in,
-    output reg [31:0] pc_out
-);
-    always @(posedge clk or posedge reset) begin
-        if (reset==1'b1)
-            pc_out <= 32'h0000_0000;
-        else
-            pc_out <= pc_in;
+    reg clk, reset;
+    
+    RISC_top uut(.clk(clk),.reset(reset));
+    
+    initial begin
+    clk=0;
+    reset =1;
+    #5;
+    reset=0;    
+    #400;
     end
+    
+    always #5 clk = ~clk;
 endmodule
-

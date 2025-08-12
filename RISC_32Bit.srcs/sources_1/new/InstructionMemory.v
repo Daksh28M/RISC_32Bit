@@ -35,7 +35,7 @@ module InstructionMemory(
     assign instr_out = mem[read_addr];
 
     always @(posedge clk or posedge reset) begin
-        if(reset)
+        if(reset==1'b1)
         begin
             for(k=0;k<64;k=k+1) mem[k]<=32'h0000_0000;
         end

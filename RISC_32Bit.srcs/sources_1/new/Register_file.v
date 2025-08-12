@@ -69,7 +69,7 @@ initial begin
 end
 always @(posedge clk or posedge reset)
 begin
-    if(reset)
+    if(reset==1'b1)
         for(k=0;k<32;k=k+1) Registers[k] <= 32'h0000_0000;
 
     else if(reg_write) Registers[Rd] <= write_data;
